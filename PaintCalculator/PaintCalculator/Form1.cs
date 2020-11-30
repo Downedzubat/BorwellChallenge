@@ -16,43 +16,34 @@ namespace PaintCalculator
         {
             InitializeComponent();
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-            var Length = float.Parse(txtLength.Text);
-            var LengthS = Length * Length;
 
-            var Width = float.Parse(txtWidth.Text);
-            var WidthS = Width * Width;
-
-            var Height = float.Parse(txtHeight.Text);
-
-            Length.ToString();
-            Width.ToString();
-            LengthS.ToString();
-            WidthS.ToString();
-            Height.ToString();
-
-            var Area = LengthS * WidthS;
-            var Volume = Length * Width * Height;
-            var Paint = Area * Height;
-
-            lblArea.Text = Area.ToString();
-            lblVolume.Text = Volume.ToString();
-            lblPaint.Text = Paint.ToString();
-
-            
-            
+            //Validating null fields
+            if (txtHeight.TextLength == 0 || txtWidth.TextLength == 0 || txtLength.TextLength == 0)
+            {
+                MessageBox.Show("Please ensure that all fields have a value inputted", "Error");
+                return;
+            }
+            //Validating alphabetical characters to ensure that only numeric information can be entered
+            else if (!float.TryParse(txtLength.Text, out var Length) || !float.TryParse(txtWidth.Text, out var Width) || !float.TryParse(txtHeight.Text, out var Height))
+            {
+                MessageBox.Show("Please only enter numbers into the text boxes", "Error");
+                return;
+            }
+            else
+            {
+                //Defining variables and preliminary calculations
+                var LengthS = Length * Length;
+                var WidthS = Width * Width;
+                var Area = LengthS * WidthS;
+                var Volume = Length * Width * Height;
+                var Paint = Area * Height;
+                //Sending calculations to labels
+                lblArea.Text = Area.ToString() + "CM^3";
+                lblVolume.Text = Volume.ToString() + "M^3";
+                lblPaint.Text = Paint.ToString() + " L";
+            }            
         }
     }
 }
