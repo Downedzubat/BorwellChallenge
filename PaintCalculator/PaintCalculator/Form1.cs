@@ -40,7 +40,7 @@ namespace PaintCalculator
                 var Volume = Length * Width * Height;
                 var Paint = Area * Height;
                 //Sending calculations to labels
-                lblArea.Text = Area.ToString() + "CM^3";
+                lblArea.Text = Area.ToString() + "CM^2";
                 lblVolume.Text = Volume.ToString() + "M^3";
                 lblPaint.Text = Paint.ToString() + " L";
             }            
